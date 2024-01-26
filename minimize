@@ -1,0 +1,74 @@
+import java.util.Scanner;
+class Solution {
+    public int uniqueCnt1,uniqueCnt2,divisor1,divisor2,flag;
+    
+    public int[] createArray1(int uniqueCnt1,int divisor1) {
+        int arr1[]=new int[uniqueCnt1];
+        int j;
+        for(int i=0;i<uniqueCnt1;i++) {
+           for(j=1;j<=10000;j++)  {
+             if(j%divisor1 != 0) {
+                 arr1[i]=j;
+                 if(arr1[i] != 0)
+                     break;
+             }
+           }
+        }
+    return arr1;
+    }
+    public int[] createArray2(int[] arr1, int uniqueCnt1, int uniqueCnt2, int divisor2) {
+    int arr2[] = new int[uniqueCnt2];
+    int j;
+    for (int i = 0; i < uniqueCnt2; i++) {
+        for (j = 1; j <= 100000; j++) {
+            for (int k = 0; k < uniqueCnt1; k++) {
+                if (j == arr1[k]) {
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag == 1) {
+                flag = 0;
+                break;  // Added this line to close the inner loop
+            } else {
+                if (j % divisor1 != 0) {
+                    arr2[i] = j;
+                    if (arr2[i] != 0)
+                        break;
+                }
+            }
+        }
+    }
+    return arr2;
+}
+
+    public void minimizeSet(int[] arr1,int[] arr2,int uniqueCnt1,int uniqueCnt2) {
+        int max=arr1[0];
+        for(int i=1;i<uniqueCnt1;i++) {
+            if(arr1[i]>max)
+                max=arr1[i];
+        }
+        for(int i=0;i<uniqueCnt2;i++) {
+            if(arr2[i]>max)
+                max=arr2[i];
+        }
+        System.out.println(max);
+    }
+}
+class Demo {
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("divisor1 = ");
+        int divisor1=sc.nextInt();
+        System.out.println("divisor2 = ");
+        int divisor2=sc.nextInt();
+        System.out.println("uniqueCnt1 = ");
+        int uniqueCnt1=sc.nextInt();
+        System.out.println("uniqueCnt2 = ");
+        int uniqueCnt2=sc.nextInt();
+        Solution sol=new Solution();
+        int[] firstarray=sol.createArray1(uniqueCnt1,divisor1);
+        int[] secondarray=sol.createArray2(firstarray,uniqueCnt1,uniqueCnt2,divisor2);
+        sol.minimizeSet(firstarray,secondarray,uniqueCnt1,uniqueCnt2);
+    }
+}
