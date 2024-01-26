@@ -1,7 +1,7 @@
 # GDSC-challenge
 
-## trying to post the code solutions for the questions in 6 companies 30 days challenge by gdsc ucek
-### Questions
+### trying to post the code solutions for the questions in 6 companies 30 days challenge by gdsc ucek
+## Questions
 #### 1
 We have two arrays arr1 and arr2 which are initially empty. You need to add positive integers to them such that they satisfy all the following conditions:
 
